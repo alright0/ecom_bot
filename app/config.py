@@ -9,6 +9,8 @@ load_dotenv()
 
 class Config:
     token = os.getenv("TOKEN", "")
+    payment_token = os.getenv("PAYMENT_TOKEN", "")
+
     bot_id = None  # инициализируем в боте
     log_chat = os.getenv("LOG_CHAT")
     testing = int(os.getenv("TESTING", 0))

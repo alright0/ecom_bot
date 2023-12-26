@@ -19,7 +19,7 @@ class BaseCallback(ABC):
     user: User
 
     @classmethod
-    def exec(cls, call: CallbackQuery, bot: Optional[Bot] = None) -> None:
+    def exec(cls, call: CallbackQuery, bot: Optional[Bot]) -> None:
         cls._define_cls_vars(call, bot)
 
     @classmethod

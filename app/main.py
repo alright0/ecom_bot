@@ -50,5 +50,9 @@ for handler in HANDLERS:
         pass_bot=handler.PASS_BOT,
     )
 
+# bot.register_shipping_query_handler(
+#
+# )
+
 if __name__ == "__main__":
     bot.infinity_polling(interval=0, timeout=600)
