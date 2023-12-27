@@ -9,6 +9,7 @@ from app.ExceptionLogger import ChatExceptionLogger
 from app.log import init_logging
 from app.message_handlers import HANDLERS
 from app.middlewares import MIDDLEWARES
+from app.pre_checkout_handlers import PRE_CHECKOUT_QUERIES
 
 pd.options.plotting.backend = "plotly"
 
@@ -48,11 +49,15 @@ for handler in HANDLERS:
         callback=handler.exec,
         func=handler.trigger,
         pass_bot=handler.PASS_BOT,
+        content_types=handler.CONTENT_TYPE,
     )
 
-# bot.register_shipping_query_handler(
-#
-# )
+for query in PRE_CHECKOUT_QUERIES:
+    bot.register_pre_checkout_query_handler(
+        callback=query.exec,
+        pass_bot=query.PASS_BOT,
+        func=query.trigger,
+    )
 
 if __name__ == "__main__":
     bot.infinity_polling(interval=0, timeout=600)

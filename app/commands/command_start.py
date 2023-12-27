@@ -13,7 +13,7 @@ class CommandStart(BaseCommand):
         super().exec(message, bot)
 
         text = (
-            f"Добрый день!\nЯ - бот, созданный для демонстрации возможностей автоматизации вашего бизнеса.\n"
+            f"Добрый день!\n\nЯ - бот, созданный для демонстрации возможностей автоматизации вашего бизнеса.\n\n"
             f"Вот что я умею:\n{cls._get_commands()}"
         )
         bot.send_custom_message(message.chat.id, text)

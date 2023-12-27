@@ -7,7 +7,11 @@ from app.markup.markup_calculation_request import markup_calculation_request
 
 class CommandCalcRequest(BaseCommand):
     DESCRIPTION = "Заявка на просчет стоимости услуг"
-    COMMANDS = ["calculation_request"]
+    COMMANDS = ["calculation"]
+
+    phone = 0
+    user_name = ""
+    description = ""
 
     @classmethod
     def exec(cls, message: Message, bot: Bot):
@@ -24,7 +28,9 @@ class CommandCalcRequest(BaseCommand):
     @classmethod
     def set_number(cls, message):
         text = "Теперь укажите номер телефона"
-        print("in set number")
+
+        cls.user_name = message.text
+
         cls.bot.send_custom_message(cls.message.chat.id, text)
         cls.bot.register_next_step_handler(
             message=message,
@@ -59,6 +65,8 @@ class CommandCalcRequest(BaseCommand):
             )
             return
 
+        cls.phone = message.text
+
         cls.bot.send_custom_message(
             cls.message.chat.id,
             "Теперь укажите описание заявки, пожелания и/или требования",
@@ -70,11 +78,13 @@ class CommandCalcRequest(BaseCommand):
 
     @classmethod
     def set_description(cls, message):
+        cls.description = message.text
+
         cls.bot.send_custom_message(
             cls.message.chat.id,
-            "Имя: Тестовый пользователь\n"
-            "Номер телеофна: 9991234567\n"
-            "Описание: Тестовое описание",
+            f"Имя: {cls.user_name}\n"
+            f"Номер телеофна: {cls.phone}\n"
+            f"Описание: {cls.description}",
             parse_mode=None,
             reply_markup=markup_calculation_request(),
         )

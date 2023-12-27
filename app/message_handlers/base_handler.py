@@ -9,6 +9,7 @@ from app.bot import Bot
 class BaseHandler(ABC):
     REGEXP: str = ".+"
     PASS_BOT: bool = True
+    CONTENT_TYPE: list = []
 
     bot: Bot
     message: Message
