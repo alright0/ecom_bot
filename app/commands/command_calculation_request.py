@@ -17,7 +17,7 @@ class CommandCalcRequest(BaseCommand):
     def exec(cls, message: Message, bot: Bot):
         super().exec(message, bot)
 
-        text = "Здесь вы можете составить заявку на просчет стоимости услуг.\n Укажите ваше имя"
+        text = "Здесь Вы можете составить заявку на просчет стоимости услуг.\n Укажите Ваше имя"
         bot.send_custom_message(
             cls.message.chat.id,
             text,
@@ -39,32 +39,6 @@ class CommandCalcRequest(BaseCommand):
 
     @classmethod
     def validate_number(cls, message):
-        valid_len = 11
-        phone_number = message.text.strip()
-        try:
-            phone_number = int(phone_number)
-        except Exception:
-            cls.bot.send_custom_message(
-                cls.message.chat.id,
-                "Номер телефона указан неверно. В сообщении должны быть только цифры. Попробуйте снова",
-            )
-            cls.bot.register_next_step_handler(
-                message=message,
-                callback=cls.validate_number,
-            )
-            return
-        if not len(str(phone_number)) == valid_len:
-            cls.bot.send_custom_message(
-                cls.message.chat.id,
-                f"Номер телефона указан неверно. Похоже, в нем {len(str(phone_number))} "
-                f"символов, а не {valid_len}. Попробуйте еще раз",
-            )
-            cls.bot.register_next_step_handler(
-                message=message,
-                callback=cls.validate_number,
-            )
-            return
-
         cls.phone = message.text
 
         cls.bot.send_custom_message(
