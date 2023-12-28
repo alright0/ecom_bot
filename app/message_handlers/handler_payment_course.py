@@ -15,7 +15,8 @@ class HandlerGivePaymentCourse(BaseHandler):
 
         bot.send_custom_message(
             chat_id=message.chat.id,
-            text="Вы успешно оплатили обучающие материалы",
+            text="Поздравляем с покупкой! Вы успешно оплатили обучающие материалы, "
+            "теперь они доступны в списке ваших материалов в разделе /courses",
         )
 
         material = f"{config.media_path}/example_material_stage_1.txt"
