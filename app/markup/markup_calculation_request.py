@@ -7,13 +7,13 @@ from app.markup import BaseInlineKeyboardMarkup
 def markup_calculation_request() -> types.InlineKeyboardMarkup:
     buttons = [
         types.InlineKeyboardButton(
-            "Отмена",
-            callback_data=CALLBACK_CALC_REQUEST_CANCEL,
+            "🟢 Отправить на просчет",
+            callback_data=CALLBACK_CALC_REQUEST,
         ),
         types.InlineKeyboardButton(
-            "Отправить заявку на просчет",
-            callback_data=CALLBACK_CALC_REQUEST,
+            "🔴️ Отмена",
+            callback_data=CALLBACK_CALC_REQUEST_CANCEL,
         ),
     ]
 
-    return BaseInlineKeyboardMarkup(buttons).markup
+    return BaseInlineKeyboardMarkup(buttons, row_width=1).markup
