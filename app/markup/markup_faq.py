@@ -6,17 +6,16 @@ from app.markup import BaseInlineKeyboardMarkup
 def markup_faq() -> types.InlineKeyboardMarkup:
     buttons = [
         types.InlineKeyboardButton(
-            "Укладка кафеля",
-            url="https://mosplitka.ru/staty/ukladka/"
-            "ukladka-plitki-na-stenu-svoimi-rukami-podrobnaya-poshagovaya-instruktsiya/",
+            "Этапы ремонта ванной комнаты",
+            url="https://vk.com/hdgroupkrasnodar?w=wall-211271126_225",
         ),
         types.InlineKeyboardButton(
-            "Отделка потолка",
-            url="https://www.youtube.com/watch?v=RHlOsKLjaa0",
+            "Дизайн-проект: Нужен или нет?",
+            url="https://vk.com/hdgroupkrasnodar?w=wall-211271126_219",
         ),
         types.InlineKeyboardButton(
-            "Покраска стен за 6 минут",
-            url="https://www.youtube.com/watch?v=Lmv5BMXfFfg",
+            "Рубрика Вопрос-Ответ",
+            url="https://vk.com/hdgroupkrasnodar?w=wall-211271126_209",
         ),
     ]
 

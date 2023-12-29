@@ -5,7 +5,7 @@ from app.commands import BaseCommand
 
 
 class CommandStart(BaseCommand):
-    DESCRIPTION = "Здесь мы начинаем общение"
+    DESCRIPTION = "Главное меню"
     COMMANDS = ["start"]
 
     @classmethod
