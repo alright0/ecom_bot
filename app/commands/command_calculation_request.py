@@ -17,21 +17,26 @@ class CommandCalcRequest(BaseCommand):
     def exec(cls, message: Message, bot: Bot):
         super().exec(message, bot)
 
-        text = "Здесь Вы можете составить заявку на просчет стоимости услуг.\n Укажите Ваше имя"
+        text = "Здесь Вы можете составить заявку на просчет стоимости услуг.\n*Укажите Ваше имя*"
         bot.send_custom_message(
-            cls.message.chat.id,
-            text,
+            chat_id=cls.message.chat.id,
+            text=text,
+            parse_mode="MARKDOWN",
         )
 
         bot.register_next_step_handler(message=message, callback=cls.set_number)
 
     @classmethod
     def set_number(cls, message):
-        text = "Теперь укажите номер телефона"
+        text = "Теперь укажите *номер телефона* для связи"
 
         cls.user_name = message.text
 
-        cls.bot.send_custom_message(cls.message.chat.id, text)
+        cls.bot.send_custom_message(
+            chat_id=cls.message.chat.id,
+            text=text,
+            parse_mode="MARKDOWN",
+        )
         cls.bot.register_next_step_handler(
             message=message,
             callback=cls.validate_number,
@@ -39,11 +44,13 @@ class CommandCalcRequest(BaseCommand):
 
     @classmethod
     def validate_number(cls, message):
+        text = ("Теперь укажите описание заявки, пожелания и/или требования",)
         cls.phone = message.text
 
         cls.bot.send_custom_message(
-            cls.message.chat.id,
-            "Теперь укажите описание заявки, пожелания и/или требования",
+            chat_id=cls.message.chat.id,
+            text=text,
+            parse_mode="MARKDOWN",
         )
         cls.bot.register_next_step_handler(
             message=message,
@@ -56,9 +63,9 @@ class CommandCalcRequest(BaseCommand):
 
         cls.bot.send_custom_message(
             cls.message.chat.id,
-            f"Имя: {cls.user_name}\n"
-            f"Номер телеофна: {cls.phone}\n"
-            f"Описание: {cls.description}",
-            parse_mode=None,
+            f"*Имя:* {cls.user_name}\n"
+            f"*Номер телеофна:* {cls.phone}\n"
+            f"*Описание:* {cls.description}",
+            parse_mode="MARKDOWN",
             reply_markup=markup_calculation_request(),
         )
